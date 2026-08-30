@@ -1,0 +1,329 @@
+[
+  {
+    "courseCode": "IGOT-STAT-204",
+    "title": "Advanced Statistical Analysis & Data Modeling",
+    "provider": "iGOT Karmayogi",
+    "domain": "Statistical",
+    "level": 4,
+    "duration": "6 hours",
+    "skillTags": ["Statistical Analysis", "Regression Modeling", "Data Interpretation"]
+  },
+  {
+    "courseCode": "NSSTA-STAT-101",
+    "title": "Principles of Official Statistics & Survey Sampling",
+    "provider": "NSSTA",
+    "domain": "Statistical",
+    "level": 3,
+    "duration": "12 hours",
+    "skillTags": ["Official Statistics", "Survey Design", "Sampling Methods"]
+  },
+  {
+    "courseCode": "NSSTA-STAT-202",
+    "title": "Census & Large-Scale Sample Survey Methodology",
+    "provider": "NSSTA",
+    "domain": "Statistical",
+    "level": 5,
+    "duration": "16 hours",
+    "skillTags": ["Census Operations", "NSSO Surveys", "Stratified Sampling"]
+  },
+  {
+    "courseCode": "IGOT-STAT-305",
+    "title": "Macroeconomic Data Analytics & GDP Estimation",
+    "provider": "iGOT Karmayogi",
+    "domain": "Statistical",
+    "level": 5,
+    "duration": "20 hours",
+    "skillTags": ["Macroeconomics", "GDP Estimation", "National Accounts"]
+  },
+  {
+    "courseCode": "NSSTA-STAT-401",
+    "title": "Consumer Price Index & Inflation Metrics",
+    "provider": "NSSTA",
+    "domain": "Statistical",
+    "level": 4,
+    "duration": "8 hours",
+    "skillTags": ["CPI", "Price Statistics", "Index Construction"]
+  },
+  {
+    "courseCode": "IGOT-STAT-105",
+    "title": "Descriptive & Inferential Statistics for Policy Officers",
+    "provider": "iGOT Karmayogi",
+    "domain": "Statistical",
+    "level": 2,
+    "duration": "5 hours",
+    "skillTags": ["Probability", "Hypothesis Testing", "Data Analysis"]
+  },
+  {
+    "courseCode": "NSSTA-STAT-302",
+    "title": "Industrial Statistics & Index of Industrial Production (IIP)",
+    "provider": "NSSTA",
+    "domain": "Statistical",
+    "level": 4,
+    "duration": "10 hours",
+    "skillTags": ["IIP", "ASI Survey", "Manufacturing Data"]
+  },
+  {
+    "courseCode": "IGOT-STAT-410",
+    "title": "Time Series Forecasting for Economic Trends",
+    "provider": "iGOT Karmayogi",
+    "domain": "Statistical",
+    "level": 4,
+    "duration": "14 hours",
+    "skillTags": ["Time Series", "ARIMA Models", "Forecasting"]
+  },
+  {
+    "courseCode": "NSSTA-STAT-501",
+    "title": "Sustainable Development Goals (SDG) Indicator Framework",
+    "provider": "NSSTA",
+    "domain": "Statistical",
+    "level": 3,
+    "duration": "7 hours",
+    "skillTags": ["SDG Data", "National Indicator Framework", "Global Standards"]
+  },
+
+  {
+    "courseCode": "NSSTA-TECH-005",
+    "title": "Advance IT, Data Visualization",
+    "provider": "NSSTA",
+    "domain": "Technical",
+    "level": 3,
+    "duration": "5 days",
+    "skillTags": ["Statistical Software", "Data Analytics"]
+  },
+  {
+    "courseCode": "NIC-TECH-103",
+    "title": "Advanced Excel for Government Administrative Officers",
+    "provider": "NIC",
+    "domain": "Technical",
+    "level": 3,
+    "duration": "8 hours",
+    "skillTags": ["Excel Formulas", "Pivot Tables", "VLOOKUP/XLOOKUP"]
+  },
+  {
+    "courseCode": "NSSTA-TECH-203",
+    "title": "R Programming for Statistical Computing in MoSPI",
+    "provider": "NSSTA",
+    "domain": "Technical",
+    "level": 4,
+    "duration": "12 hours",
+    "skillTags": ["R Language", "Data Wrangling", "ggplot2"]
+  },
+  {
+    "courseCode": "NIC-TECH-204",
+    "title": "Python for Data Science & Automation in Governance",
+    "provider": "NIC",
+    "domain": "Technical",
+    "level": 4,
+    "duration": "18 hours",
+    "skillTags": ["Python", "Pandas", "Scripting Automation"]
+  },
+  {
+    "courseCode": "NSSTA-TECH-304",
+    "title": "GIS & Spatial Data Analysis for Regional Survey Mapping",
+    "provider": "NSSTA",
+    "domain": "Technical",
+    "level": 4,
+    "duration": "10 hours",
+    "skillTags": ["GIS", "QGIS", "Geospatial Analysis"]
+  },
+  {
+    "courseCode": "NIC-TECH-305",
+    "title": "SQL Database Management & Query Optimization",
+    "provider": "NIC",
+    "domain": "Technical",
+    "level": 3,
+    "duration": "9 hours",
+    "skillTags": ["SQL Queries", "Database Design", "PostgreSQL"]
+  },
+  {
+    "courseCode": "IGOT-TECH-401",
+    "title": "Machine Learning Fundamentals for Public Policy Insights",
+    "provider": "iGOT Karmayogi",
+    "domain": "Technical",
+    "level": 5,
+    "duration": "15 hours",
+    "skillTags": ["Machine Learning", "Predictive Analytics", "Scikit-Learn"]
+  },
+  {
+    "courseCode": "NIC-TECH-108",
+    "title": "Cloud Infrastructure & Government Data Centers (MeghRaj)",
+    "provider": "NIC",
+    "domain": "Technical",
+    "level": 3,
+    "duration": "6 hours",
+    "skillTags": ["Cloud Computing", "MeghRaj", "Server Administration"]
+  },
+  {
+    "courseCode": "IGOT-TECH-210",
+    "title": "API Integration & Interoperability Standards in Governance",
+    "provider": "iGOT Karmayogi",
+    "domain": "Technical",
+    "level": 3,
+    "duration": "7 hours",
+    "skillTags": ["REST APIs", "API Setu", "JSON Data Interchange"]
+  },
+
+  {
+    "courseCode": "NSSTA-DIGI-003",
+    "title": "Cyber Security",
+    "provider": "NSSTA",
+    "domain": "Digital Governance",
+    "level": 2,
+    "duration": "0.5 days",
+    "skillTags": ["Data Security", "Cybersecurity"]
+  },
+  {
+    "courseCode": "NIC-DG-104",
+    "title": "e-Office File Management & Digital Note-Sheeting",
+    "provider": "NIC",
+    "domain": "Digital Governance",
+    "level": 2,
+    "duration": "4 hours",
+    "skillTags": ["e-Office", "Digital File Processing", "NIC Workflow"]
+  },
+  {
+    "courseCode": "IGOT-DG-202",
+    "title": "Digital India Service Delivery Standards & Guidelines",
+    "provider": "iGOT Karmayogi",
+    "domain": "Digital Governance",
+    "level": 3,
+    "duration": "5 hours",
+    "skillTags": ["e-Governance", "UMANG", "Digital Services"]
+  },
+  {
+    "courseCode": "IGOT-DG-303",
+    "title": "Digital Personal Data Protection (DPDP) Act Compliance",
+    "provider": "iGOT Karmayogi",
+    "domain": "Digital Governance",
+    "level": 3,
+    "duration": "6 hours",
+    "skillTags": ["Data Privacy", "DPDP Act", "Compliance Frameworks"]
+  },
+  {
+    "courseCode": "NIC-DG-205",
+    "title": "Government e-Marketplace (GeM) Procurement Portal Mastery",
+    "provider": "NIC",
+    "domain": "Digital Governance",
+    "level": 3,
+    "duration": "8 hours",
+    "skillTags": ["GeM Portal", "Public Procurement", "Vendor Management"]
+  },
+  {
+    "courseCode": "IGOT-DG-402",
+    "title": "Digital Public Infrastructure (DPI) & Aadhaar Integration",
+    "provider": "iGOT Karmayogi",
+    "domain": "Digital Governance",
+    "level": 4,
+    "duration": "12 hours",
+    "skillTags": ["DPI Architecture", "Aadhaar e-KYC", "e-Sign"]
+  },
+  {
+    "courseCode": "NIC-DG-308",
+    "title": "Cyber Hygiene & CERT-In Compliance Guidelines",
+    "provider": "NIC",
+    "domain": "Digital Governance",
+    "level": 2,
+    "duration": "4 hours",
+    "skillTags": ["CERT-In Guidelines", "Phishing Awareness", "Device Security"]
+  },
+  {
+    "courseCode": "IGOT-DG-110",
+    "title": "Open Government Data (OGD) Portal Publishing Standards",
+    "provider": "iGOT Karmayogi",
+    "domain": "Digital Governance",
+    "level": 3,
+    "duration": "5 hours",
+    "skillTags": ["OGD Platform", "Open Data", "Metadata Standards"]
+  },
+  {
+    "courseCode": "NIC-DG-220",
+    "title": "National Single Window System & Inter-Ministry Portals",
+    "provider": "NIC",
+    "domain": "Digital Governance",
+    "level": 3,
+    "duration": "6 hours",
+    "skillTags": ["NSWS", "Interoperability", "Portal Administration"]
+  },
+
+  {
+    "courseCode": "ISTM-BEH-301",
+    "title": "Strategic Leadership & Public Program Management",
+    "provider": "ISTM",
+    "domain": "Behavioural/Managerial",
+    "level": 4,
+    "duration": "3 weeks",
+    "skillTags": ["Leadership", "Strategic Planning", "Project Management", "Team Building"]
+  },
+  {
+    "courseCode": "LBSNAA-BEH-301",
+    "title": "Executive Decision Making & Change Management in Public Sector",
+    "provider": "LBSNAA",
+    "domain": "Behavioural/Managerial",
+    "level": 4,
+    "duration": "3 weeks",
+    "skillTags": ["Decision Making", "Change Management", "Public Policy"]
+  },
+  {
+    "courseCode": "ISTM-BEH-201",
+    "title": "Agile Project Management for Government Schemes",
+    "provider": "ISTM",
+    "domain": "Behavioural/Managerial",
+    "level": 3,
+    "duration": "6 hours",
+    "skillTags": ["Project Management", "Agile Methodologies", "Scrum"]
+  },
+  {
+    "courseCode": "LBSNAA-LAW-201",
+    "title": "Administrative Law & Conduct Rules for Central Government Officers",
+    "provider": "LBSNAA",
+    "domain": "Behavioural/Managerial",
+    "level": 3,
+    "duration": "2 weeks",
+    "skillTags": ["Administrative Law", "CCS Rules", "Compliance"]
+  },
+  {
+    "courseCode": "ISTM-BEH-103",
+    "title": "Public Communication, Media Briefings & Crisis Relations",
+    "provider": "ISTM",
+    "domain": "Behavioural/Managerial",
+    "level": 2,
+    "duration": "4 hours",
+    "skillTags": ["Public Communication", "Media Relations", "Crisis Communication"]
+  },
+  {
+    "courseCode": "IGOT-BEH-204",
+    "title": "Conflict Resolution & Stakeholder Negotiation in Multilateral Projects",
+    "provider": "iGOT Karmayogi",
+    "domain": "Behavioural/Managerial",
+    "level": 3,
+    "duration": "8 hours",
+    "skillTags": ["Negotiation", "Conflict Resolution", "Stakeholder Management"]
+  },
+  {
+    "courseCode": "LBSNAA-BEH-402",
+    "title": "Ethical Governance, Anti-Corruption & Vigilance Awareness",
+    "provider": "LBSNAA",
+    "domain": "Behavioural/Managerial",
+    "level": 4,
+    "duration": "10 hours",
+    "skillTags": ["Ethics in Governance", "Vigilance", "Public Integrity"]
+  },
+  {
+    "courseCode": "ISTM-BEH-110",
+    "title": "Time Management & Workplace Productivity for Section Officers",
+    "provider": "ISTM",
+    "domain": "Behavioural/Managerial",
+    "level": 2,
+    "duration": "4 hours",
+    "skillTags": ["Time Management", "Productivity", "Office Administration"]
+  },
+  {
+    "courseCode": "IGOT-BEH-315",
+    "title": "Design Thinking for Public Service Delivery Innovation",
+    "provider": "iGOT Karmayogi",
+    "domain": "Behavioural/Managerial",
+    "level": 4,
+    "duration": "9 hours",
+    "skillTags": ["Design Thinking", "Service Innovation", "Problem Solving"]
+  }
+]

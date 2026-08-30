@@ -1,0 +1,54 @@
+{
+  "census": [
+    "Data Visualization",
+    "Statistical Sampling",
+    "Census Operations",
+    "Survey Methodology",
+    "Data Management"
+  ],
+  "policy": [
+    "Policy Analysis",
+    "Digital Governance",
+    "Public Administration",
+    "Regulatory Frameworks",
+    "Public Policy"
+  ],
+  "gst": [
+    "Macroeconomics",
+    "Price Statistics",
+    "Data Processing",
+    "Spreadsheet Formulas"
+  ],
+  "data": [
+    "Data Analysis",
+    "Data Visualization",
+    "PowerBI",
+    "Python",
+    "Data Interpretation"
+  ],
+  "cyber": [
+    "Cybersecurity",
+    "Data Privacy",
+    "DPDP Act",
+    "Information Security"
+  ],
+  "office": [
+    "e-Office",
+    "Digital Workflows",
+    "Document Management",
+    "Office Administration"
+  ],
+  "survey": [
+    "Survey Methodology",
+    "Statistical Sampling",
+    "NSSO Surveys",
+    "Data Interpretation"
+  ],
+  "it": [
+    "Python",
+    "SQL Queries",
+    "Cloud Computing",
+    "REST APIs",
+    "Scripting Automation"
+  ]
+}
