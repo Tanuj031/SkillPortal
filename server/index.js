@@ -40,4 +40,9 @@ const start = async () => {
   });
 };
 
-start();
+// Start server if executed directly
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  start();
+}
+
+export default app;
