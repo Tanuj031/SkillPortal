@@ -103,6 +103,37 @@ export default function Login({ onNavigateToRegister, onNavigateToForgotPassword
             <p className="text-[14px] text-[#44474e]">Access your learning and development dashboard.</p>
           </div>
 
+          {/* Quick Login Presets Bar */}
+          <div className="bg-slate-50 border border-slate-200 rounded-xl p-3 flex flex-col gap-2">
+            <div className="flex items-center gap-1.5 text-xs font-extrabold text-[#002046]">
+              <span className="material-symbols-outlined text-[#F5A623] text-sm">bolt</span>
+              <span>Quick Login Presets (Fills Credentials):</span>
+            </div>
+            <div className="grid grid-cols-3 gap-2">
+              <button
+                type="button"
+                onClick={() => setFormData(prev => ({ ...prev, email: 'director@mospi.gov.in', password: 'Password123' }))}
+                className="px-2 py-1.5 bg-[#002046] text-white text-[11px] font-bold rounded-lg hover:bg-[#001026] transition-all cursor-pointer text-center shadow-xs"
+              >
+                CSO Director
+              </button>
+              <button
+                type="button"
+                onClick={() => setFormData(prev => ({ ...prev, email: 'statistical.officer@mospi.gov.in', password: 'Password123' }))}
+                className="px-2 py-1.5 bg-teal-800 text-white text-[11px] font-bold rounded-lg hover:bg-teal-900 transition-all cursor-pointer text-center shadow-xs"
+              >
+                NSSO Officer
+              </button>
+              <button
+                type="button"
+                onClick={() => setFormData(prev => ({ ...prev, email: 'admin@mospi.gov.in', password: 'Password123' }))}
+                className="px-2 py-1.5 bg-slate-800 text-white text-[11px] font-bold rounded-lg hover:bg-slate-900 transition-all cursor-pointer text-center shadow-xs"
+              >
+                Admin
+              </button>
+            </div>
+          </div>
+
           {/* Form */}
           <form onSubmit={handleSubmit} className="flex flex-col gap-4" noValidate>
             {serverError && (

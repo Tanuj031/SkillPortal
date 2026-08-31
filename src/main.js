@@ -820,47 +820,35 @@ function validateEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-// Quick Demo Presets
+// Quick Demo Presets - Pre-fills form credentials only, requiring user to click Sign In for real POST /api/auth/login
 function initDemoPresets() {
   document.querySelectorAll('.btn-demo-preset').forEach(btn => {
     btn.addEventListener('click', () => {
       const presetType = btn.getAttribute('data-preset');
-      const db = getUsersDatabase();
 
       let targetEmail = 'director@mospi.gov.in';
       let targetPass = 'Password123';
-      if (presetType === 'statistical_officer') targetEmail = 'statistical.officer@mospi.gov.in';
-      if (presetType === 'admin') targetEmail = 'admin@mospi.gov.in';
+      let roleLabel = 'CSO Director';
 
-      const user = db.find(u => u.email === targetEmail) || db[0];
+      if (presetType === 'statistical_officer') {
+        targetEmail = 'statistical.officer@mospi.gov.in';
+        roleLabel = 'NSSO Officer';
+      }
+      if (presetType === 'admin') {
+        targetEmail = 'admin@mospi.gov.in';
+        roleLabel = 'Admin';
+      }
 
       const loginEmail = document.getElementById('login-email');
       const loginPass = document.getElementById('login-password');
       if (loginEmail) loginEmail.value = targetEmail;
       if (loginPass) loginPass.value = targetPass;
 
-      setLoginLoading(true);
-      fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: targetEmail, password: targetPass })
-      })
-        .then(res => {
-          if (!res.ok) throw new Error('Backend server offline');
-          return res.json();
-        })
-        .then(data => {
-          setLoginLoading(false);
-          if (data.success && data.user) {
-            loginUserSession(data.user);
-          } else if (user) {
-            loginUserSession(user);
-          }
-        })
-        .catch(() => {
-          setLoginLoading(false);
-          if (user) loginUserSession(user);
-        });
+      // Clear any previous error states
+      document.getElementById('login-email-error')?.classList.add('hidden');
+      document.getElementById('login-password-error')?.classList.add('hidden');
+
+      showToast(`Loaded demo credentials for ${roleLabel}. Click 'Sign In to Dashboard' to authenticate.`, 'info');
     });
   });
 }
