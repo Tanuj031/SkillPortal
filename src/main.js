@@ -88,7 +88,18 @@ function checkExistingSession() {
       currentUser = JSON.parse(session);
       renderAuthenticatedState(currentUser);
       showAppContainer('dashboard');
-      showToast(`Welcome back, ${currentUser.fullName}!`, 'success');
+
+      // Role-Based Initial Routing on session restore
+      const userRole = (currentUser?.role || 'cso').toLowerCase();
+      if (userRole === 'admin') {
+        switchDashboardSubpanel('admin');
+      } else if (userRole === 'nsso') {
+        switchDashboardSubpanel('assessment');
+      } else {
+        switchDashboardSubpanel('dashboard');
+      }
+
+      showToast(`Welcome back, ${currentUser.fullName || currentUser.name}!`, 'success');
     } catch (e) {
       localStorage.removeItem('mospi_auth_user');
       showAppContainer('auth');
