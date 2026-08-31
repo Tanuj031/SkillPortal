@@ -1,16 +1,24 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 
 export default function Sidebar({ isOpen, onClose }) {
-  const mainNavItems = [
-    { to: '/dashboard', label: 'Dashboard', icon: 'dashboard' },
+  const { user } = useAuth();
+  const userRole = (user?.role || 'cso').toLowerCase();
+
+  const dashboardRoute = userRole === 'nsso' ? '/dashboard/nsso' : userRole === 'cso' ? '/dashboard/cso' : '/dashboard';
+
+  const rawNavItems = [
+    { to: dashboardRoute, label: 'Dashboard', icon: 'dashboard' },
     { to: '/dashboard/profile', label: 'Profile', icon: 'person' },
     { to: '/dashboard/assessment', label: 'Assessment', icon: 'fact_check' },
     { to: '/dashboard/skill-gaps', label: 'Skill Gaps', icon: 'trending_down' },
     { to: '/dashboard/recommendations', label: 'Recommendations', icon: 'lightbulb' },
     { to: '/dashboard/quiz', label: 'Quiz', icon: 'quiz' },
-    { to: '/dashboard/admin', label: 'Admin Oversight', icon: 'admin_panel_settings' },
+    { to: '/dashboard/admin', label: 'Admin Oversight', icon: 'admin_panel_settings', adminOnly: true },
   ];
+
+  const mainNavItems = rawNavItems.filter(item => !item.adminOnly || userRole === 'admin');
 
   const secondaryNavItems = [
     { to: '/dashboard/certification', label: 'View Certification', icon: 'workspace_premium' },

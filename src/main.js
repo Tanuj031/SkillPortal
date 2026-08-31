@@ -289,14 +289,33 @@ function switchDashboardSubpanel(tabName) {
   // If non-admin tries to access admin panel
   if (tabName === 'admin' && userRole !== 'admin') {
     showToast('Access Denied: Admin role required for Catalog & Employee Oversight.', 'error');
-    const fallbackTab = userRole === 'nsso' ? 'assessment' : 'dashboard';
+    const fallbackTab = userRole === 'nsso' ? 'nsso' : 'cso';
     switchDashboardSubpanel(fallbackTab);
     return;
   }
 
+  // If non-NSSO user tries to access NSSO dashboard
+  if (tabName === 'nsso' && userRole !== 'nsso') {
+    showToast('Access Denied: NSSO Officer role required for NSSO Dashboard.', 'error');
+    switchDashboardSubpanel(userRole === 'admin' ? 'admin' : 'cso');
+    return;
+  }
+
+  // Handle standard 'dashboard' tab fallback based on role
+  if (tabName === 'dashboard' || tabName === 'cso') {
+    tabName = userRole === 'nsso' ? 'nsso' : userRole === 'admin' ? 'admin' : 'cso';
+  }
+
+  // Update browser URL state cleanly
+  if (['nsso', 'cso', 'admin'].includes(tabName)) {
+    window.history.pushState({ tab: tabName }, '', `/dashboard/${tabName}`);
+  } else {
+    window.history.pushState({ tab: tabName }, '', `/dashboard/${tabName}`);
+  }
+
   const items = document.querySelectorAll('.sidebar-nav-item');
   items.forEach(item => {
-    const isCurrent = item.getAttribute('data-tab') === tabName;
+    const isCurrent = item.getAttribute('data-tab') === tabName || (tabName === 'nsso' && item.getAttribute('data-tab') === 'dashboard');
     if (isCurrent) {
       item.className = 'sidebar-nav-item flex items-center gap-3 px-4 py-3 text-secondary dark:text-secondary-fixed font-bold border-r-4 border-secondary dark:border-secondary-fixed bg-surface-container-high dark:bg-surface-variant transition-all cursor-pointer';
       const icon = item.querySelector('.material-symbols-outlined');
@@ -310,7 +329,7 @@ function switchDashboardSubpanel(tabName) {
 
   const subpanels = document.querySelectorAll('.subpanel-content');
   subpanels.forEach(panel => {
-    if (panel.id === `subpanel-${tabName}`) {
+    if (panel.id === `subpanel-${tabName}` || (tabName === 'cso' && panel.id === 'subpanel-dashboard')) {
       panel.classList.remove('hidden');
     } else {
       panel.classList.add('hidden');
@@ -320,6 +339,8 @@ function switchDashboardSubpanel(tabName) {
   const topbarTitle = document.getElementById('topbar-title');
   if (topbarTitle) {
     const titleMap = {
+      'cso': 'CSO Director Dashboard',
+      'nsso': 'NSSO Officer Dashboard',
       'dashboard': 'Employee Dashboard',
       'profile': 'Officer Profile',
       'assessment': 'GovSkill Assessment Center',
@@ -331,8 +352,98 @@ function switchDashboardSubpanel(tabName) {
     topbarTitle.textContent = titleMap[tabName] || 'Employee Dashboard';
   }
 
+  if (tabName === 'nsso') {
+    populateNSSODashboard();
+  }
+
   if (tabName === 'admin') {
     setTimeout(initAdminCharts, 100);
+  }
+}
+
+async function populateNSSODashboard() {
+  if (!currentUser) return;
+
+  const nameEl = document.getElementById('nsso-welcome-name');
+  const titleEl = document.getElementById('nsso-welcome-title');
+  const divEl = document.getElementById('nsso-welcome-division');
+  const statDivEl = document.getElementById('nsso-stat-division');
+  const scoreValEl = document.getElementById('nsso-score-val');
+
+  if (nameEl) nameEl.textContent = `Welcome back, ${currentUser.fullName || currentUser.name}`;
+  if (titleEl) titleEl.textContent = currentUser.designation || 'Statistical Officer';
+  if (divEl) divEl.textContent = currentUser.division || 'Field Operations Division';
+  if (statDivEl) statDivEl.textContent = currentUser.division || 'Field Operations Division';
+  if (scoreValEl) scoreValEl.textContent = currentUser.competencyScore || 78;
+
+  const userId = currentUser.id || currentUser._id || '6a9564edbe80382402c6cd99';
+
+  // Fetch real NSSO gaps
+  try {
+    const gapsRes = await fetch(`/api/competency/gaps/${userId}`).then(r => r.json());
+    const gapsContainer = document.getElementById('nsso-gaps-container');
+    if (gapsContainer && gapsRes.success && Array.isArray(gapsRes.gaps)) {
+      const topGaps = gapsRes.gaps.slice(0, 4);
+      gapsContainer.innerHTML = topGaps.map(g => `
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-black text-[#0F2E5C]">${g.skillName}</span>
+            <span class="text-[10px] font-extrabold px-2.5 py-0.5 rounded-full ${g.severity === 'HIGH' ? 'bg-rose-100 text-rose-800 border border-rose-200' : 'bg-amber-100 text-amber-800 border border-amber-200'}">
+              ${g.severity} GAP (+${g.gap})
+            </span>
+          </div>
+          <div class="space-y-1">
+            <div class="flex justify-between text-[11px] font-bold text-slate-500">
+              <span>Current: Level ${g.currentLevel}</span>
+              <span>Required: Level ${g.requiredLevel}</span>
+            </div>
+            <div class="w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+              <div class="bg-teal-600 h-full rounded-full" style="width: ${Math.min(100, (g.currentLevel / g.requiredLevel) * 100)}%"></div>
+            </div>
+          </div>
+          ${g.recommendedCourseTitle ? `
+            <p class="text-[11px] font-semibold text-teal-800 flex items-center gap-1 pt-1">
+              <span class="material-symbols-outlined text-xs text-amber-500">auto_awesome</span>
+              <span>Recommended: ${g.recommendedCourseTitle}</span>
+            </p>
+          ` : ''}
+        </div>
+      `).join('');
+    }
+  } catch (e) {
+    console.error('Error populating NSSO gaps:', e);
+  }
+
+  // Fetch real NSSO courses
+  try {
+    const recsRes = await fetch(`/api/courses/recommendations/${userId}`).then(r => r.json());
+    const coursesContainer = document.getElementById('nsso-courses-container');
+    if (coursesContainer && recsRes.success && Array.isArray(recsRes.recommendations)) {
+      const topCourses = recsRes.recommendations.slice(0, 3);
+      coursesContainer.innerHTML = topCourses.map(c => `
+        <div class="p-4 rounded-xl border border-slate-200/80 bg-slate-50/60 hover:bg-white hover:shadow-sm transition-all space-y-2">
+          <div class="flex justify-between items-start gap-2">
+            <div>
+              <span class="text-[10px] font-black uppercase tracking-wider text-teal-700 bg-teal-50 px-2 py-0.5 rounded border border-teal-200">
+                ${c.courseCode || 'NSSTA-STAT-002'}
+              </span>
+              <h4 class="text-sm font-extrabold text-[#0F2E5C] mt-1">${c.title}</h4>
+            </div>
+            <span class="text-[11px] font-bold text-slate-500 whitespace-nowrap">${c.duration || '5 days'}</span>
+          </div>
+          <p class="text-xs text-slate-600 font-medium line-clamp-2">${c.reason || 'Tailored for NSSO competency development.'}</p>
+          <div class="flex justify-between items-center pt-2 border-t border-slate-100 text-xs">
+            <span class="font-bold text-slate-500">Provider: ${c.provider || 'NSSTA'}</span>
+            <button class="btn-start-course bg-[#F5A623] hover:bg-[#D98E18] text-white font-extrabold px-3 py-1.5 rounded-lg transition-colors flex items-center gap-1 text-[11px] cursor-pointer">
+              <span>Start Learning</span>
+              <span class="material-symbols-outlined text-xs">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+  } catch (e) {
+    console.error('Error populating NSSO courses:', e);
   }
 }
 
