@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDemoPresets();
   initForgotPasswordModal();
   initCertificationModal();
+  initInactivityListeners();
   checkExistingSession();
 });
 
@@ -80,6 +81,42 @@ function updateDatabaseUser(updatedUser) {
   }
 }
 
+// 5-Minute Inactivity Auto-Logout Manager
+let inactivityTimer = null;
+const INACTIVITY_LIMIT_MS = 5 * 60 * 1000; // 5 Minutes (300,000ms)
+
+function startInactivityTimer() {
+  stopInactivityTimer();
+  if (!currentUser) return;
+
+  inactivityTimer = setTimeout(() => {
+    if (currentUser) {
+      logoutUserSession();
+      showToast('Session expired due to 5 minutes of inactivity. Please sign in again.', 'warning');
+    }
+  }, INACTIVITY_LIMIT_MS);
+}
+
+function stopInactivityTimer() {
+  if (inactivityTimer) {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = null;
+  }
+}
+
+function resetInactivityTimer() {
+  if (currentUser) {
+    startInactivityTimer();
+  }
+}
+
+function initInactivityListeners() {
+  const events = ['mousemove', 'keydown', 'mousedown', 'scroll', 'touchstart', 'click'];
+  events.forEach(evt => {
+    window.addEventListener(evt, resetInactivityTimer, { passive: true });
+  });
+}
+
 // Session Management
 function checkExistingSession() {
   const session = localStorage.getItem('mospi_auth_user');
@@ -88,6 +125,7 @@ function checkExistingSession() {
       currentUser = JSON.parse(session);
       renderAuthenticatedState(currentUser);
       showAppContainer('dashboard');
+      startInactivityTimer();
 
       // Role-Based Initial Routing on session restore
       const userRole = (currentUser?.role || 'cso').toLowerCase();
@@ -116,6 +154,7 @@ function loginUserSession(user) {
   localStorage.setItem('mospi_auth_user', JSON.stringify(user));
   renderAuthenticatedState(user);
   showAppContainer('dashboard');
+  startInactivityTimer();
   
   // Role-Based Initial Routing
   const userRole = (user.role || 'cso').toLowerCase();
@@ -132,6 +171,7 @@ function loginUserSession(user) {
 
 function logoutUserSession() {
   currentUser = null;
+  stopInactivityTimer();
   localStorage.removeItem('mospi_auth_user');
   showAppContainer('auth');
   showView('login');

@@ -33,6 +33,31 @@ export function AuthProvider({ children }) {
     }
   }, []);
 
+  // 5-Minute Inactivity Auto-Logout Effect
+  useEffect(() => {
+    if (!token && !user) return;
+
+    let inactivityTimer;
+    const INACTIVITY_LIMIT_MS = 5 * 60 * 1000; // 5 Minutes (300,000ms)
+
+    const resetTimer = () => {
+      if (inactivityTimer) clearTimeout(inactivityTimer);
+      inactivityTimer = setTimeout(() => {
+        logout();
+      }, INACTIVITY_LIMIT_MS);
+    };
+
+    resetTimer();
+
+    const events = ['mousemove', 'keydown', 'mousedown', 'scroll', 'touchstart', 'click'];
+    events.forEach((evt) => window.addEventListener(evt, resetTimer, { passive: true }));
+
+    return () => {
+      if (inactivityTimer) clearTimeout(inactivityTimer);
+      events.forEach((evt) => window.removeEventListener(evt, resetTimer));
+    };
+  }, [token, user]);
+
   const saveAuth = (authToken, userData) => {
     setToken(authToken);
     setUser(userData);
