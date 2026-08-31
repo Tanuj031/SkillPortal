@@ -119,203 +119,277 @@
   <div id="toast-container"></div>
 
   <!-- AUTHENTICATION VIEWS CONTAINER -->
-  <div id="auth-flow-container" class="w-full min-h-screen flex flex-col justify-between">
+  <div id="auth-flow-container" class="w-full min-h-screen flex flex-col justify-between bg-gradient-to-br from-[#0F2E5C]/5 via-[#F8FAFC] to-[#F5A623]/5">
     <!-- TopAppBar for Auth Pages -->
-    <header class="bg-white border-b border-slate-200/90 w-full sticky top-0 z-50 shadow-xs">
+    <header class="bg-white/90 backdrop-blur-md border-b border-slate-200/90 w-full sticky top-0 z-50 shadow-xs">
       <div class="flex justify-between items-center px-4 md:px-8 py-3.5 w-full max-w-[1280px] mx-auto">
         <div class="flex items-center gap-3 cursor-pointer" id="brand-logo-btn">
-          <div class="w-10 h-10 rounded-xl bg-[#0F2E5C] text-white flex items-center justify-center shadow-xs border-2 border-[#F5A623]">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-[#0F2E5C] to-[#1B365D] text-white flex items-center justify-center shadow-md border-2 border-[#F5A623]">
             <span class="material-symbols-outlined text-xl">account_balance</span>
           </div>
           <div class="flex flex-col">
-            <h1 class="text-base sm:text-lg font-extrabold text-[#0F2E5C] leading-none tracking-tight">MoSPI Skill Platform</h1>
-            <span class="text-[10px] tracking-wider uppercase font-extrabold text-[#D98E18] mt-0.5">Government of India • Ministry of Statistics</span>
+            <h1 class="text-base sm:text-lg font-extrabold text-[#0F2E5C] leading-none tracking-tight">MoSPI Skill Portal</h1>
+            <span class="text-[10px] tracking-wider uppercase font-extrabold text-[#D98E18] mt-0.5">Government of India • Ministry of Statistics & Programme Implementation</span>
           </div>
+        </div>
+
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100/90 border border-slate-200 text-xs font-extrabold text-[#0F2E5C]">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>iGOT Karmayogi Portal Sync Active</span>
         </div>
       </div>
     </header>
 
     <!-- Main Auth Canvas -->
-    <main class="flex-grow flex flex-col items-center justify-center p-4 md:p-8 bg-[#F8FAFC] w-full">
-      <div class="w-full max-w-md mx-auto flex flex-col items-center justify-center py-4 space-y-5">
+    <main class="flex-grow flex flex-col items-center justify-center p-4 md:p-8 w-full max-w-[1280px] mx-auto">
+      
+      <!-- Quick Demo Presets Bar -->
+      <div id="demo-presets-wrapper" class="w-full max-w-4xl mb-6">
+        <div class="bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2 text-[#0F2E5C] font-extrabold text-xs sm:text-sm">
+            <span class="material-symbols-outlined text-[#F5A623] text-lg animate-bounce">bolt</span>
+            <span>Quick Login Presets:</span>
+          </div>
+          <div class="flex flex-wrap gap-2.5 justify-center sm:justify-end w-full sm:w-auto">
+            <button data-preset="director" class="btn-demo-preset bg-[#0F2E5C] hover:bg-[#0A1F3F] text-white px-3.5 py-2 rounded-xl font-extrabold transition-all flex items-center gap-1.5 shadow-sm hover:shadow cursor-pointer active:scale-95">
+              <span class="material-symbols-outlined text-xs text-[#F5A623]">workspace_premium</span>
+              <span>CSO Director</span>
+            </button>
+            <button data-preset="statistical_officer" class="btn-demo-preset bg-teal-800 hover:bg-teal-900 text-white px-3.5 py-2 rounded-xl font-extrabold transition-all flex items-center gap-1.5 shadow-sm hover:shadow cursor-pointer active:scale-95">
+              <span class="material-symbols-outlined text-xs">analytics</span>
+              <span>NSSO Officer</span>
+            </button>
+            <button data-preset="admin" class="btn-demo-preset bg-slate-900 hover:bg-black text-white px-3.5 py-2 rounded-xl font-extrabold transition-all flex items-center gap-1.5 shadow-sm hover:shadow cursor-pointer active:scale-95">
+              <span class="material-symbols-outlined text-xs">admin_panel_settings</span>
+              <span>Admin</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero & Auth Container Grid -->
+      <div class="w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
         
-        <!-- Quick Demo Presets Bar -->
-        <div id="demo-presets-wrapper" class="w-full">
-          <div class="bg-white border border-slate-200/90 rounded-2xl p-4 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-            <div class="flex items-center gap-1.5 text-[#0F2E5C] font-extrabold">
-              <span class="material-symbols-outlined text-[#F5A623] text-base">bolt</span>
-              <span>Quick Login Presets:</span>
+        <!-- Left Hero Feature Panel (Hidden on small screens, visible on LG) -->
+        <div class="hidden lg:flex lg:col-span-5 flex-col gap-6 p-6 rounded-3xl bg-gradient-to-br from-[#0F2E5C] to-[#1B365D] text-white shadow-xl relative overflow-hidden">
+          <div class="absolute -top-12 -right-12 w-40 h-40 bg-[#F5A623]/20 rounded-full blur-2xl pointer-events-none"></div>
+          
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 text-[#F5A623]">
+              <span class="material-symbols-outlined text-2xl">auto_awesome</span>
             </div>
-            <div class="flex flex-wrap gap-2 justify-center sm:justify-end">
-              <button data-preset="director" class="btn-demo-preset bg-[#0F2E5C] text-white hover:bg-[#0A1F3F] px-3 py-1.5 rounded-lg font-bold transition-all flex items-center gap-1 shadow-2xs cursor-pointer">
-                <span class="material-symbols-outlined text-xs text-[#F5A623]">workspace_premium</span>
-                <span>CSO Director</span>
-              </button>
-              <button data-preset="statistical_officer" class="btn-demo-preset bg-teal-800 text-white hover:bg-teal-900 px-3 py-1.5 rounded-lg font-bold transition-all flex items-center gap-1 shadow-2xs cursor-pointer">
-                <span class="material-symbols-outlined text-xs">analytics</span>
-                <span>NSSO Officer</span>
-              </button>
-              <button data-preset="admin" class="btn-demo-preset bg-slate-800 text-white hover:bg-slate-900 px-3 py-1.5 rounded-lg font-bold transition-all flex items-center gap-1 shadow-2xs cursor-pointer">
-                <span class="material-symbols-outlined text-xs">admin_panel_settings</span>
-                <span>Admin</span>
-              </button>
+            <div>
+              <span class="text-[10px] font-extrabold tracking-widest uppercase text-[#F5A623]">National Skill Framework</span>
+              <h3 class="text-xl font-extrabold leading-tight">MoSPI Competency Portal</h3>
+            </div>
+          </div>
+
+          <p class="text-xs text-slate-200/90 leading-relaxed font-medium">
+            Personalized learning pathways, AI-driven skill gap assessments, and official NSSTA certifications tailored for Indian Statistical Service Officers.
+          </p>
+
+          <div class="space-y-3 pt-2 border-t border-white/15 text-xs">
+            <div class="flex items-center gap-2.5 font-bold">
+              <span class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-xs">✓</span>
+              <span>CSO & NSSO Division Gap Analysis</span>
+            </div>
+            <div class="flex items-center gap-2.5 font-bold">
+              <span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-300 flex items-center justify-center text-xs">✓</span>
+              <span>iGOT Karmayogi Integrated Catalog</span>
+            </div>
+            <div class="flex items-center gap-2.5 font-bold">
+              <span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-300 flex items-center justify-center text-xs">✓</span>
+              <span>Verified Government PDF Certificates</span>
             </div>
           </div>
         </div>
 
-        <!-- VIEW 1: LOGIN -->
-        <section id="view-login" class="view-section active w-full flex items-center justify-center">
-          <div class="w-full max-w-md bg-white rounded-2xl border border-slate-200/90 p-6 sm:p-8 shadow-lg flex flex-col gap-5 relative overflow-hidden">
-            <div class="absolute top-0 right-0 -mt-16 -mr-16 w-36 h-36 bg-blue-100/50 rounded-full opacity-60 pointer-events-none blur-3xl"></div>
-            
-            <div class="text-center flex flex-col items-center gap-1.5">
-              <div class="w-14 h-14 rounded-2xl bg-[#0F2E5C] text-white flex items-center justify-center shadow-md mb-1 border-2 border-[#F5A623]">
-                <span class="material-symbols-outlined text-2xl">lock_person</span>
-              </div>
-              <h2 class="text-2xl font-extrabold text-[#0F2E5C]">Officer Sign In</h2>
-              <p class="text-xs font-semibold text-slate-500">Access your MoSPI competency and training development portal.</p>
-            </div>
-
-            <form id="form-login" class="flex flex-col gap-4" novalidate>
-              <div class="flex flex-col gap-1.5">
-                <label class="text-xs font-extrabold text-slate-700" for="login-email">Official Email Address</label>
-                <div class="relative">
-                  <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none">mail</span>
-                  <input class="w-full pl-10 pr-3 py-3 bg-slate-50/60 border border-slate-300 rounded-xl text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[#0F2E5C] focus:bg-white focus:ring-2 focus:ring-[#0F2E5C]/10 focus:outline-none transition-all" 
-                         id="login-email" 
-                         name="email" 
-                         placeholder="name@mospi.gov.in" 
-                         required 
-                         type="email"/>
+        <!-- Right Auth Form Card (Login / Register) -->
+        <div class="lg:col-span-7 w-full flex flex-col justify-center">
+          
+          <!-- VIEW 1: LOGIN -->
+          <section id="view-login" class="view-section active w-full flex items-center justify-center">
+            <div class="w-full bg-white/95 backdrop-blur-xl rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-2xl flex flex-col gap-5 relative overflow-hidden">
+              <div class="absolute top-0 right-0 -mt-16 -mr-16 w-36 h-36 bg-[#F5A623]/10 rounded-full blur-3xl pointer-events-none"></div>
+              
+              <div class="text-center flex flex-col items-center gap-1.5">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0F2E5C] to-[#1B365D] text-white flex items-center justify-center shadow-lg mb-1 border-2 border-[#F5A623]">
+                  <span class="material-symbols-outlined text-2xl">lock_person</span>
                 </div>
-                <span id="login-email-error" class="text-xs text-red-600 font-semibold hidden">Please enter a valid email address.</span>
+                <h2 class="text-2xl font-black text-[#0F2E5C] tracking-tight">Officer Sign In</h2>
+                <p class="text-xs font-bold text-slate-500">Access your MoSPI competency and training development portal.</p>
               </div>
 
-              <div class="flex flex-col gap-1.5">
-                <div class="flex justify-between items-center">
-                  <label class="text-xs font-extrabold text-slate-700" for="login-password">Password</label>
-                  <button id="btn-forgot-password-link" type="button" class="text-xs font-extrabold text-[#F5A623] hover:text-[#D98E18] transition-colors focus:outline-none">Forgot password?</button>
-                </div>
-                <div class="relative">
-                  <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none">key</span>
-                  <input class="w-full pl-10 pr-10 py-3 bg-slate-50/60 border border-slate-300 rounded-xl text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[#0F2E5C] focus:bg-white focus:ring-2 focus:ring-[#0F2E5C]/10 focus:outline-none transition-all" 
-                         id="login-password" 
-                         name="password" 
-                         placeholder="••••••••" 
-                         required 
-                         type="password"/>
-                  <button id="toggle-login-password" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 focus:outline-none transition-colors p-1" type="button" aria-label="Toggle password visibility">
-                    <span class="material-symbols-outlined text-lg">visibility</span>
-                  </button>
-                </div>
-                <span id="login-password-error" class="text-xs text-red-600 font-semibold hidden">Please enter your password.</span>
-              </div>
-
-              <div class="flex items-center gap-2 py-1">
-                <input class="w-4 h-4 text-[#0F2E5C] bg-slate-50 border-slate-300 rounded focus:ring-[#0F2E5C]/20 cursor-pointer" id="login-remember" type="checkbox"/>
-                <label class="text-xs font-semibold text-slate-600 cursor-pointer" for="login-remember">Remember me for 30 days</label>
-              </div>
-
-              <button id="btn-login-submit" class="w-full py-3.5 bg-[#F5A623] hover:bg-[#D98E18] text-white font-extrabold text-sm rounded-xl shadow-md transition-all flex items-center justify-center gap-2 group active:scale-[0.99] cursor-pointer" type="submit">
-                <span id="login-btn-text">Sign In to Dashboard</span>
-                <span id="login-btn-spinner" class="hidden">
-                  <span class="material-symbols-outlined text-lg animate-spin">progress_activity</span>
-                </span>
-                <span id="login-btn-icon" class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </button>
-            </form>
-
-            <div class="text-center pt-3 border-t border-slate-100">
-              <p class="text-xs font-semibold text-slate-600">
-                Don't have an account? 
-                <button id="btn-goto-register" class="text-[#0F2E5C] hover:text-[#F5A623] font-bold ml-1 transition-colors focus:outline-none">Register here</button>
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <!-- VIEW 2: REGISTER -->
-        <section id="view-register" class="view-section w-full flex items-center justify-center">
-          <div class="w-full max-w-lg bg-white rounded-2xl border border-slate-200/90 overflow-hidden shadow-lg">
-            <div class="px-6 py-6 border-b border-slate-100 bg-slate-50/80 flex flex-col items-center justify-center text-center">
-              <div class="w-14 h-14 rounded-2xl bg-[#0F2E5C] text-white flex items-center justify-center mb-2 shadow-md border-2 border-[#F5A623]">
-                <span class="material-symbols-outlined text-2xl">person_add</span>
-              </div>
-              <h2 class="text-2xl font-extrabold text-[#0F2E5C]">Create Officer Account</h2>
-              <p class="text-xs font-semibold text-slate-500 mt-0.5">Register to access institutional training resources & competency assessments.</p>
-            </div>
-
-            <form id="form-register" class="p-6 sm:p-8 space-y-4" novalidate>
-              <div class="space-y-1.5">
-                <label class="block text-xs font-extrabold text-slate-700" for="reg-fullName">Full Name</label>
-                <div class="relative">
-                  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                    <span class="material-symbols-outlined text-slate-400 text-lg">person</span>
-                  </div>
-                  <input class="input-field block w-full pl-10 pr-3 py-2.5 bg-slate-50/60 border border-slate-300 rounded-xl text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[#0F2E5C] focus:bg-white focus:outline-none transition-all" 
-                         id="reg-fullName" 
-                         name="fullName" 
-                         placeholder="e.g. Rahul Sharma" 
-                         required 
-                         type="text"/>
-                </div>
-                <span id="reg-name-error" class="text-xs text-red-600 font-semibold hidden">Please enter your full name.</span>
-              </div>
-
-              <div class="space-y-1.5">
-                <label class="block text-xs font-extrabold text-slate-700" for="reg-email">Official Email</label>
-                <div class="relative">
-                  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                    <span class="material-symbols-outlined text-slate-400 text-lg">mail</span>
-                  </div>
-                  <input class="input-field block w-full pl-10 pr-3 py-2.5 bg-slate-50/60 border border-slate-300 rounded-xl text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[#0F2E5C] focus:bg-white focus:outline-none transition-all" 
-                         id="reg-email" 
-                         name="email" 
-                         placeholder="name@mospi.gov.in" 
-                         required 
-                         type="email"/>
-                </div>
-                <span id="reg-email-error" class="text-xs text-red-600 font-semibold hidden">Please enter a valid official email.</span>
-              </div>
-
-              <div class="space-y-1.5">
-                <label class="block text-xs font-extrabold text-slate-700" for="reg-password">Password</label>
-                <div class="relative">
-                  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                    <span class="material-symbols-outlined text-slate-400 text-lg">lock</span>
-                  </div>
-                  <input class="input-field block w-full pl-10 pr-10 py-2.5 bg-slate-50/60 border border-slate-300 rounded-xl text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[#0F2E5C] focus:bg-white focus:outline-none transition-all" 
-                         id="reg-password" 
-                         name="password" 
-                         placeholder="••••••••" 
-                         required 
-                         type="password"/>
-                  <button id="toggle-reg-password" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700 transition-colors focus:outline-none" type="button">
-                    <span class="material-symbols-outlined text-lg">visibility</span>
-                  </button>
-                </div>
-                <div class="space-y-1 mt-1">
-                  <div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
-                    <div id="strength-bar" class="strength-meter-bar w-0"></div>
-                  </div>
-                  <div class="flex justify-between items-center text-[11px] text-slate-500 font-semibold">
-                    <span id="strength-label">Must be at least 8 characters.</span>
-                    <span id="strength-status" class="font-bold"></span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <div class="space-y-1.5">
-                  <label class="block text-xs font-extrabold text-slate-700" for="reg-designation">Designation</label>
+              <form id="form-login" class="flex flex-col gap-4.5" novalidate>
+                <div class="flex flex-col gap-1.5">
+                  <label class="text-[11px] font-black uppercase tracking-wider text-slate-700" for="login-email">Official Email Address</label>
                   <div class="relative">
-                    <select class="input-field block w-full pl-3 pr-8 py-2.5 bg-slate-50/60 border border-slate-300 rounded-xl text-sm font-semibold text-slate-900 appearance-none cursor-pointer focus:border-[#0F2E5C] focus:bg-white focus:outline-none transition-all" id="reg-designation" name="designation" required>
-                      <option value="" disabled selected>Select Title</option>
-                      <option value="Director">Director</option>
-                      <option value="Deputy Director">Deputy Director</option>
-                      <option value="Assistant Director">Assistant Director</option>
-                      <option value="Statistical Officer">Statistical Officer</option>
-                      <option value="Other">Other</option>
+                    <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none">mail</span>
+                    <input class="w-full pl-10 pr-3 py-3 bg-slate-50 border border-slate-300/90 rounded-xl text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[#0F2E5C] focus:bg-white focus:ring-4 focus:ring-[#0F2E5C]/10 focus:outline-none transition-all shadow-xs" 
+                           id="login-email" 
+                           name="email" 
+                           placeholder="name@mospi.gov.in" 
+                           required 
+                           type="email"/>
+                  </div>
+                  <span id="login-email-error" class="text-xs text-red-600 font-bold hidden">Please enter a valid email address.</span>
+                </div>
+
+                <div class="flex flex-col gap-1.5">
+                  <div class="flex justify-between items-center">
+                    <label class="text-[11px] font-black uppercase tracking-wider text-slate-700" for="login-password">Password</label>
+                    <button id="btn-forgot-password-link" type="button" class="text-xs font-black text-[#D98E18] hover:text-[#0F2E5C] transition-colors focus:outline-none">Forgot password?</button>
+                  </div>
+                  <div class="relative">
+                    <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none">key</span>
+                    <input class="w-full pl-10 pr-10 py-3 bg-slate-50 border border-slate-300/90 rounded-xl text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[#0F2E5C] focus:bg-white focus:ring-4 focus:ring-[#0F2E5C]/10 focus:outline-none transition-all shadow-xs" 
+                           id="login-password" 
+                           name="password" 
+                           placeholder="••••••••" 
+                           required 
+                           type="password"/>
+                    <button id="toggle-login-password" class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 focus:outline-none transition-colors p-1" type="button" aria-label="Toggle password visibility">
+                      <span class="material-symbols-outlined text-lg">visibility</span>
+                    </button>
+                  </div>
+                  <span id="login-password-error" class="text-xs text-red-600 font-bold hidden">Please enter your password.</span>
+                </div>
+
+                <div class="flex items-center gap-2 py-1">
+                  <input class="w-4 h-4 text-[#0F2E5C] bg-slate-50 border-slate-300 rounded focus:ring-[#0F2E5C]/20 cursor-pointer" id="login-remember" type="checkbox"/>
+                  <label class="text-xs font-extrabold text-slate-600 cursor-pointer" for="login-remember">Remember me for 30 days</label>
+                </div>
+
+                <button id="btn-login-submit" class="w-full py-3.5 bg-gradient-to-r from-[#F5A623] to-[#D98E18] text-white font-black text-sm rounded-xl shadow-md hover:shadow-lg shadow-[#F5A623]/20 transition-all flex items-center justify-center gap-2 group active:scale-[0.99] cursor-pointer" type="submit">
+                  <span id="login-btn-text">Sign In to Dashboard</span>
+                  <span id="login-btn-spinner" class="hidden">
+                    <span class="material-symbols-outlined text-lg animate-spin">progress_activity</span>
+                  </span>
+                  <span id="login-btn-icon" class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </button>
+              </form>
+
+              <div class="text-center pt-3 border-t border-slate-100">
+                <p class="text-xs font-bold text-slate-600">
+                  Don't have an account? 
+                  <button id="btn-goto-register" class="text-[#0F2E5C] hover:text-[#D98E18] font-black ml-1 transition-colors focus:outline-none underline underline-offset-2">Register here</button>
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- VIEW 2: REGISTER -->
+          <section id="view-register" class="view-section w-full flex items-center justify-center">
+            <div class="w-full bg-white/95 backdrop-blur-xl rounded-3xl border border-slate-200/90 overflow-hidden shadow-2xl">
+              <div class="px-6 py-6 border-b border-slate-100 bg-slate-50/80 flex flex-col items-center justify-center text-center">
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#0F2E5C] to-[#1B365D] text-white flex items-center justify-center mb-2 shadow-lg border-2 border-[#F5A623]">
+                  <span class="material-symbols-outlined text-2xl">person_add</span>
+                </div>
+                <h2 class="text-2xl font-black text-[#0F2E5C] tracking-tight">Create Officer Account</h2>
+                <p class="text-xs font-bold text-slate-500 mt-0.5">Register to access institutional training resources & competency assessments.</p>
+              </div>
+
+              <form id="form-register" class="p-6 sm:p-8 space-y-4" novalidate>
+                <div class="space-y-1.5">
+                  <label class="block text-[11px] font-black uppercase tracking-wider text-slate-700" for="reg-fullName">Full Name</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                      <span class="material-symbols-outlined text-slate-400 text-lg">person</span>
+                    </div>
+                    <input class="input-field block w-full pl-10 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[#0F2E5C] focus:bg-white focus:outline-none transition-all shadow-xs" 
+                           id="reg-fullName" 
+                           name="fullName" 
+                           placeholder="e.g. Rahul Sharma" 
+                           required 
+                           type="text"/>
+                  </div>
+                  <span id="reg-name-error" class="text-xs text-red-600 font-bold hidden">Please enter your full name.</span>
+                </div>
+
+                <div class="space-y-1.5">
+                  <label class="block text-[11px] font-black uppercase tracking-wider text-slate-700" for="reg-email">Official Email</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                      <span class="material-symbols-outlined text-slate-400 text-lg">mail</span>
+                    </div>
+                    <input class="input-field block w-full pl-10 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[#0F2E5C] focus:bg-white focus:outline-none transition-all shadow-xs" 
+                           id="reg-email" 
+                           name="email" 
+                           placeholder="name@mospi.gov.in" 
+                           required 
+                           type="email"/>
+                  </div>
+                  <span id="reg-email-error" class="text-xs text-red-600 font-bold hidden">Please enter a valid official email.</span>
+                </div>
+
+                <div class="space-y-1.5">
+                  <label class="block text-[11px] font-black uppercase tracking-wider text-slate-700" for="reg-password">Password</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                      <span class="material-symbols-outlined text-slate-400 text-lg">lock</span>
+                    </div>
+                    <input class="input-field block w-full pl-10 pr-10 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[#0F2E5C] focus:bg-white focus:outline-none transition-all shadow-xs" 
+                           id="reg-password" 
+                           name="password" 
+                           placeholder="••••••••" 
+                           required 
+                           type="password"/>
+                    <button id="toggle-reg-password" class="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-700 transition-colors focus:outline-none" type="button">
+                      <span class="material-symbols-outlined text-lg">visibility</span>
+                    </button>
+                  </div>
+                  <div class="space-y-1 mt-1">
+                    <div class="w-full bg-slate-200 h-1.5 rounded-full overflow-hidden">
+                      <div id="strength-bar" class="strength-meter-bar w-0"></div>
+                    </div>
+                    <div class="flex justify-between items-center text-[11px] text-slate-500 font-extrabold">
+                      <span id="strength-label">Must be at least 8 characters.</span>
+                      <span id="strength-status" class="font-bold"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div class="space-y-1.5">
+                    <label class="block text-[11px] font-black uppercase tracking-wider text-slate-700" for="reg-designation">Designation</label>
+                    <div class="relative">
+                      <select class="input-field block w-full pl-3 pr-8 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-semibold text-slate-900 appearance-none cursor-pointer focus:border-[#0F2E5C] focus:bg-white focus:outline-none transition-all shadow-xs" id="reg-designation" name="designation" required>
+                        <option value="" disabled selected>Select Title</option>
+                        <option value="Director">Director</option>
+                        <option value="Deputy Director">Deputy Director</option>
+                        <option value="Assistant Director">Assistant Director</option>
+                        <option value="Statistical Officer">Statistical Officer</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-slate-400">
+                        <span class="material-symbols-outlined text-lg">expand_more</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="space-y-1.5">
+                    <label class="block text-[11px] font-black uppercase tracking-wider text-slate-700" for="reg-experience">Experience (Years)</label>
+                    <div class="relative">
+                      <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                        <span class="material-symbols-outlined text-slate-400 text-lg">timeline</span>
+                      </div>
+                      <input class="input-field block w-full pl-10 pr-3 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[#0F2E5C] focus:bg-white focus:outline-none transition-all shadow-xs" id="reg-experience" max="50" min="0" name="experience" placeholder="0" required type="number"/>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="space-y-1.5">
+                  <label class="block text-[11px] font-black uppercase tracking-wider text-slate-700" for="reg-department">Department / Division</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                      <span class="material-symbols-outlined text-slate-400 text-lg">corporate_fare</span>
+                    </div>
+                    <select class="input-field block w-full pl-10 pr-10 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-semibold text-slate-900 appearance-none cursor-pointer focus:border-[#0F2E5C] focus:bg-white focus:outline-none transition-all shadow-xs" id="reg-department" name="department" required>
+                      <option value="" disabled selected>Select Division</option>
+                      <option value="Central Statistics Office (CSO)">Central Statistics Office (CSO)</option>
+                      <option value="National Sample Survey Office (NSSO)">National Sample Survey Office (NSSO)</option>
+                      <option value="Programme Implementation Wing">Programme Implementation Wing</option>
+                      <option value="Administration">Administration</option>
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-slate-400">
                       <span class="material-symbols-outlined text-lg">expand_more</span>
@@ -323,51 +397,23 @@
                   </div>
                 </div>
 
-                <div class="space-y-1.5">
-                  <label class="block text-xs font-extrabold text-slate-700" for="reg-experience">Experience (Years)</label>
-                  <div class="relative">
-                    <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                      <span class="material-symbols-outlined text-slate-400 text-lg">timeline</span>
-                    </div>
-                    <input class="input-field block w-full pl-10 pr-3 py-2.5 bg-slate-50/60 border border-slate-300 rounded-xl text-sm font-semibold text-slate-900 placeholder:text-slate-400 focus:border-[#0F2E5C] focus:bg-white focus:outline-none transition-all" id="reg-experience" max="50" min="0" name="experience" placeholder="0" required type="number"/>
-                  </div>
+                <div class="pt-3 border-t border-slate-100 flex flex-col items-center gap-3">
+                  <button id="btn-register-submit" class="w-full bg-gradient-to-r from-[#F5A623] to-[#D98E18] text-white font-black text-sm py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg shadow-[#F5A623]/20 transition-all flex items-center justify-center gap-2 active:scale-[0.99] cursor-pointer" type="submit">
+                    <span id="reg-btn-text">Create Account</span>
+                    <span id="reg-btn-spinner" class="hidden">
+                      <span class="material-symbols-outlined text-lg animate-spin">progress_activity</span>
+                    </span>
+                    <span id="reg-btn-icon" class="material-symbols-outlined text-base">arrow_forward</span>
+                  </button>
+                  <button id="btn-goto-login" type="button" class="text-xs font-black text-[#0F2E5C] hover:text-[#D98E18] transition-colors underline underline-offset-2">
+                    Already have an account? Login here
+                  </button>
                 </div>
-              </div>
+              </form>
+            </div>
+          </section>
 
-              <div class="space-y-1.5">
-                <label class="block text-xs font-extrabold text-slate-700" for="reg-department">Department / Division</label>
-                <div class="relative">
-                  <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
-                    <span class="material-symbols-outlined text-slate-400 text-lg">corporate_fare</span>
-                  </div>
-                  <select class="input-field block w-full pl-10 pr-10 py-2.5 bg-slate-50/60 border border-slate-300 rounded-xl text-sm font-semibold text-slate-900 appearance-none cursor-pointer focus:border-[#0F2E5C] focus:bg-white focus:outline-none transition-all" id="reg-department" name="department" required>
-                    <option value="" disabled selected>Select Division</option>
-                    <option value="Central Statistics Office (CSO)">Central Statistics Office (CSO)</option>
-                    <option value="National Sample Survey Office (NSSO)">National Sample Survey Office (NSSO)</option>
-                    <option value="Programme Implementation Wing">Programme Implementation Wing</option>
-                    <option value="Administration">Administration</option>
-                  </select>
-                  <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-slate-400">
-                    <span class="material-symbols-outlined text-lg">expand_more</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="pt-3 border-t border-slate-100 flex flex-col items-center gap-3">
-                <button id="btn-register-submit" class="w-full bg-[#F5A623] hover:bg-[#D98E18] text-white font-extrabold text-sm py-3.5 px-6 rounded-xl shadow-md transition-all flex items-center justify-center gap-2 active:scale-[0.99] cursor-pointer" type="submit">
-                  <span id="reg-btn-text">Create Account</span>
-                  <span id="reg-btn-spinner" class="hidden">
-                    <span class="material-symbols-outlined text-lg animate-spin">progress_activity</span>
-                  </span>
-                  <span id="reg-btn-icon" class="material-symbols-outlined text-base">arrow_forward</span>
-                </button>
-                <button id="btn-goto-login" type="button" class="text-xs font-bold text-[#0F2E5C] hover:text-[#F5A623] transition-colors">
-                  Already have an account? Login here
-                </button>
-              </div>
-            </form>
-          </div>
-        </section>
+        </div>
 
       </div>
     </main>
