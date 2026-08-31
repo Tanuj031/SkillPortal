@@ -682,7 +682,10 @@ function initFormHandlers() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email, password })
     })
-      .then(res => res.json())
+      .then(res => {
+        if (!res.ok) throw new Error('Backend server offline');
+        return res.json();
+      })
       .then(data => {
         setLoginLoading(false);
         if (data.success && data.user) {
@@ -705,7 +708,7 @@ function initFormHandlers() {
         if (user) {
           loginUserSession(user);
         } else {
-          showToast('Login failed. Please check your credentials.', 'error');
+          showToast('Invalid credentials. Try demo presets or register.', 'error');
         }
       });
   });
@@ -842,7 +845,10 @@ function initDemoPresets() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: targetEmail, password: targetPass })
       })
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) throw new Error('Backend server offline');
+          return res.json();
+        })
         .then(data => {
           setLoginLoading(false);
           if (data.success && data.user) {
