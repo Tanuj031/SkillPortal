@@ -94,9 +94,9 @@ function checkExistingSession() {
       if (userRole === 'admin') {
         switchDashboardSubpanel('admin');
       } else if (userRole === 'nsso') {
-        switchDashboardSubpanel('assessment');
+        switchDashboardSubpanel('nsso');
       } else {
-        switchDashboardSubpanel('dashboard');
+        switchDashboardSubpanel('cso');
       }
 
       showToast(`Welcome back, ${currentUser.fullName || currentUser.name}!`, 'success');
@@ -122,9 +122,9 @@ function loginUserSession(user) {
   if (userRole === 'admin') {
     switchDashboardSubpanel('admin');
   } else if (userRole === 'nsso') {
-    switchDashboardSubpanel('assessment');
+    switchDashboardSubpanel('nsso');
   } else {
-    switchDashboardSubpanel('dashboard');
+    switchDashboardSubpanel('cso');
   }
   
   showToast(`Logged in successfully as ${user.fullName || user.name} (${userRole.toUpperCase()})`, 'success');
